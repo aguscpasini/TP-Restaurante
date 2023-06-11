@@ -2,6 +2,7 @@ package org.example;
 
 import java.util.*;
 
+
 public class Restaurant implements IsetearRest{
         private List<Mesa> listMesas;
     private List<Cliente> listClientes;
@@ -202,4 +203,48 @@ public class Restaurant implements IsetearRest{
         Mesa mesa = buscarMesa(numMesa);
         mesa.getPedido().mostrarPlatos();
     }
+
+    public Integer ingresarYBuscarMesa() throws MesaNoEncontrada {
+
+        boolean flag = false;
+        do {
+            try {
+                Mesa mesaAux = null;
+                do {
+                    Scanner scMesa = new Scanner(System.in);
+                    System.out.println("Ingrese mesa destino:");
+                    Integer numMesa = scMesa.nextInt();
+                    mesaAux = buscarMesa(numMesa);
+                    try {
+                    if (mesaAux == null) {
+
+                        throw new MesaNoEncontrada();
+
+                    }}catch (MesaNoEncontrada e2){
+                            System.out.println("Mesa no encontrada");}
+
+                } while (mesaAux == null);
+
+                return mesaAux.getNumeroDeMesa();
+
+            } catch (InputMismatchException e1) {
+                System.out.println("Ingrese un caracter valido");
+
+            }
+        } while (flag == false);
+        return 0;
+    }
+
+
+    class MesaNoEncontrada extends Exception{
+
+        public MesaNoEncontrada(){};
+
+        public MesaNoEncontrada (String msj_error){
+            super (msj_error);
+        }
+    }
+
+
+
 }
