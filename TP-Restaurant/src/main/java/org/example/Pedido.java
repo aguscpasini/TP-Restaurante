@@ -22,8 +22,14 @@ public class Pedido {
     }
 
     public void mostrarPlatos (){
-        for (Plato p:listPlatos) {
-            System.out.println(p.getNombre());
+
+        try {
+
+            for (Plato p : listPlatos) {
+                System.out.println(p.getNombre());
+            }
+        }catch (NullPointerException e){
+            System.out.println("Un plato ingresado no existe en la carta");
         }
 
     }

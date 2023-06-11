@@ -3,7 +3,7 @@ package org.example;
 import java.util.*;
 
 public class Restaurant implements IsetearRest{
-    private List<Mesa> listMesas;
+        private List<Mesa> listMesas;
     private List<Cliente> listClientes;
     private static Double recaudacion;
     private List<Empleado> setEmpleados;
@@ -171,24 +171,35 @@ public class Restaurant implements IsetearRest{
     }
 
     public void agregarPlatoAMesa(int numMesa) {
-        Scanner sc = new Scanner(System.in);
-        Mesa mesa = buscarMesa(numMesa);
-        String continuar = "s";
-        Integer cod = 0;
-        do {
-            System.out.println("Ingresa codigo de plato");
-            cod = sc.nextInt();
-            Plato plato = buscarPlato(cod);
-            mesa.getPedido().agregarPlato(plato);
-            sc.nextLine();
-            System.out.println("Vas a agregar otro? s para continuar");
-            continuar = sc.nextLine();
-        } while (continuar.equals("s"));
+
+            Scanner sc = new Scanner(System.in);
+            Mesa mesa = buscarMesa(numMesa);
+            String continuar = "s";
+            Integer cod = 0;
+
+            while (continuar.equals("s") && mesa != null) {
+
+                System.out.println("Ingresa codigo de plato");
+                cod = sc.nextInt();
+                Plato plato = buscarPlato(cod);
+
+                try {
+                    mesa.getPedido().agregarPlato(plato);
+                }catch (NullPointerException ex) {
+                    System.out.println("El numero de mesa al que se quiere agregar el plato no existe");
+                }
+
+                sc.nextLine();
+                System.out.println("Vas a agregar otro? s para continuar");
+                continuar = sc.nextLine();
+
+            }
+
     }
 
     public void mostrarPlatosEnMesa (int numMesa){
-        Mesa mesa = buscarMesa(numMesa);
 
+        Mesa mesa = buscarMesa(numMesa);
         mesa.getPedido().mostrarPlatos();
     }
 }
