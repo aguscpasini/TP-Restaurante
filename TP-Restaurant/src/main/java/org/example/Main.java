@@ -9,7 +9,7 @@ public class Main {
 
        try {
 
-           URL url = new URL("https://referential.p.rapidapi.com/v1/city?ip=190.244.103.68");
+           URL url = new URL("https://aguscpasini.github.io/jsonapitprestaurante/db.json");
 
            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
            conn.setRequestMethod("GET");
