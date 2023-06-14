@@ -2,7 +2,7 @@ package org.example;
 
 public class Plato {
     private Integer codigo;
-    private String nombre;
+    public String nombre;
     private String descripcion;
     private double precio;
     private TipoComida tipo;

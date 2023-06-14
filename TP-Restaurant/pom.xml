@@ -13,5 +13,40 @@
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
+    <dependencies>
+        <dependency>
+            <groupId>org.codehaus.jackson</groupId>
+            <artifactId>jackson-mapper-asl</artifactId>
+            <version>1.9.13</version>
+        </dependency>
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>20230227</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.13.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+            <version>2.9.7</version>
+        </dependency>
+        <dependency>
+            <groupId>de.krsc.jsonpath</groupId>
+            <artifactId>jsonpath</artifactId>
+            <version>0.1</version>
+        </dependency>
+        <dependency>
+            <groupId>top.jfunc.json</groupId>
+            <artifactId>Json-Gson</artifactId>
+            <version>1.0</version>
+        </dependency>
+
+
+    </dependencies>
+
 
 </project>
