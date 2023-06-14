@@ -1,10 +1,20 @@
 package org.example;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.lang.reflect.Type;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.*;
 
 
 public class Restaurant implements IsetearRest{
-        private List<Mesa> listMesas;
+        private ArrayList<Mesa> listMesas;
     private List<Cliente> listClientes;
     private static Double recaudacion;
     private List<Empleado> setEmpleados;
@@ -46,14 +56,31 @@ public class Restaurant implements IsetearRest{
         menuDePlatos.put(plato8.getCodigo(), plato8);
     }
 
-    public void setearMesas() {
-        listMesas.add(new Mesa(2, (Mozo) setEmpleados.get(0)));
-        listMesas.add(new Mesa(2, (Mozo) setEmpleados.get(1)));
-        listMesas.add(new Mesa(4, (Mozo) setEmpleados.get(2)));
-        listMesas.add(new Mesa(4, (Mozo) setEmpleados.get(2)));
-        listMesas.add(new Mesa(6, (Mozo) setEmpleados.get(1)));
-        listMesas.add(new Mesa(6, (Mozo) setEmpleados.get(0)));
+    public static String stream(URL url) {
+        try (InputStream input = url.openStream()) {
+            InputStreamReader isr = new InputStreamReader(input);
+            BufferedReader reader = new BufferedReader(isr);
+            StringBuilder json = new StringBuilder();
+            int c;
+            while ((c = reader.read()) != -1) {
+                json.append((char) c);
+            }
+            return json.toString();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    public ArrayList<Mesa> setearMesas() {
+        try {
+            String jsonString = stream(new URL("https://aguscpasini.github.io/jsonapitprestaurante/mesas.json"));
+            Gson gson = new Gson();
+            Type MesasListType = new TypeToken<ArrayList<Mesa>>(){}.getType();
+            listMesas = gson.fromJson(jsonString, MesasListType);
 
+        return listMesas;
+        } catch (MalformedURLException ex) {
+            throw new RuntimeException(ex);
+        }
     }
 
     public void setearMozos() {

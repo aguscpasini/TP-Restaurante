@@ -1,13 +1,14 @@
 package org.example;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 
 public class Pedido {
 
-   private LinkedList<Plato>listPlatos;
+   public ArrayList<Plato> listPlatos;
 
     public Pedido() {
-        this.listPlatos = new LinkedList<>();
+        this.listPlatos = new ArrayList<Plato>();
     }
 
     public double sumarGastado(){
