@@ -71,6 +71,7 @@ public class Restaurant implements IsetearRest{
         }
     }
     public ArrayList<Mesa> setearMesas() {
+
         try {
             String jsonString = stream(new URL("https://aguscpasini.github.io/jsonapitprestaurante/mesas.json"));
             Gson gson = new Gson();
