@@ -1,12 +1,20 @@
 package org.example;
 
 public abstract class Persona {
+    private static int idPersona;
+    private int id;
     private String nombre;
     private String apellido;
 
     public Persona(String nombre, String apellido) {
+        idPersona++;
+        this.id=idPersona;
         this.nombre = nombre;
         this.apellido = apellido;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public String getNombre() {

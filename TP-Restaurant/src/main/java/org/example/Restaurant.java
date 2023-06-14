@@ -3,8 +3,8 @@ package org.example;
 import java.util.*;
 
 
-public class Restaurant implements IsetearRest{
-        private List<Mesa> listMesas;
+public class Restaurant implements IsetearRest {
+    private List<Mesa> listMesas;
     private List<Cliente> listClientes;
     private static Double recaudacion;
     private List<Empleado> setEmpleados;
@@ -159,6 +159,7 @@ public class Restaurant implements IsetearRest{
         desocuparMesa(numMesa);
         double gastadoMesa = mesa.sumarGastadoMesa();
         setRecaudacion(gastadoMesa);
+        mesa.setRecaudacionTotal(gastadoMesa);
         return gastadoMesa;
     }
 
@@ -173,32 +174,33 @@ public class Restaurant implements IsetearRest{
 
     public void agregarPlatoAMesa(int numMesa) {
 
-            Scanner sc = new Scanner(System.in);
-            Mesa mesa = buscarMesa(numMesa);
-            String continuar = "s";
-            Integer cod = 0;
+        Scanner sc = new Scanner(System.in);
+        Mesa mesa = buscarMesa(numMesa);
+        String continuar = "s";
+        Integer cod = 0;
 
-            while (continuar.equals("s") && mesa != null) {
+        while (continuar.equals("s") && mesa != null) {
 
-                System.out.println("Ingresa codigo de plato");
-                cod = sc.nextInt();
-                Plato plato = buscarPlato(cod);
+            System.out.println("Ingresa codigo de plato");
+            cod = sc.nextInt();
+            Plato plato = buscarPlato(cod);
 
-                try {
-                    mesa.getPedido().agregarPlato(plato);
-                }catch (NullPointerException ex) {
-                    System.out.println("El numero de mesa al que se quiere agregar el plato no existe");
-                }
-
-                sc.nextLine();
-                System.out.println("Vas a agregar otro? s para continuar");
-                continuar = sc.nextLine();
-
+            try {
+                mesa.getPedido().agregarPlato(plato);
+                mesa.setRecaudacionParcial(mesa.sumarGastadoMesa());
+            } catch (NullPointerException ex) {
+                System.out.println("El numero de mesa al que se quiere agregar el plato no existe");
             }
+
+            sc.nextLine();
+            System.out.println("Vas a agregar otro? s para continuar");
+            continuar = sc.nextLine();
+
+        }
 
     }
 
-    public void mostrarPlatosEnMesa (int numMesa){
+    public void mostrarPlatosEnMesa(int numMesa) {
 
         Mesa mesa = buscarMesa(numMesa);
         mesa.getPedido().mostrarPlatos();
@@ -216,12 +218,14 @@ public class Restaurant implements IsetearRest{
                     Integer numMesa = scMesa.nextInt();
                     mesaAux = buscarMesa(numMesa);
                     try {
-                    if (mesaAux == null) {
+                        if (mesaAux == null) {
 
-                        throw new MesaNoEncontrada();
+                            throw new MesaNoEncontrada();
 
-                    }}catch (MesaNoEncontrada e2){
-                            System.out.println("Mesa no encontrada");}
+                        }
+                    } catch (MesaNoEncontrada e2) {
+                        System.out.println("Mesa no encontrada");
+                    }
 
                 } while (mesaAux == null);
 
@@ -236,15 +240,17 @@ public class Restaurant implements IsetearRest{
     }
 
 
-    class MesaNoEncontrada extends Exception{
+    class MesaNoEncontrada extends Exception {
 
-        public MesaNoEncontrada(){};
+        public MesaNoEncontrada() {
+        }
 
-        public MesaNoEncontrada (String msj_error){
-            super (msj_error);
+        ;
+
+        public MesaNoEncontrada(String msj_error) {
+            super(msj_error);
         }
     }
-
 
 
 }
