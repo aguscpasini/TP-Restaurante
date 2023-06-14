@@ -4,12 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Mesa {
-    private static int numMesa;
+    public static int numMesa;
     private int numeroDeMesa;
     private int capacidad;
-    private Boolean ocupada;
-    private Mozo mozo;
-    private Pedido pedido;
+    public Boolean ocupada;
+    public Mozo mozo;
+    public Pedido pedido;
     private Double propina;
     private Double recaudacionTotal;
     private Double recaudacionParcial;
