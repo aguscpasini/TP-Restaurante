@@ -3,6 +3,7 @@ package org.example;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class Main {
@@ -10,8 +11,14 @@ public class Main {
 
        Restaurant res = new Restaurant();
        res.setearMozos();
-       res.setearPlatos();
+       HashMap<Integer,Plato>menuPlatos=res.setearPlatos();
        ArrayList<Mesa> Mesas = res.setearMesas();
+
+        for (Plato p :menuPlatos.values()) {
+            System.out.println(p.toString());
+        }
+
+
 
        Mesas.forEach(i -> {
            if (i.ocupada) {
