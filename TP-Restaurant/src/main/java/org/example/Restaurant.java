@@ -38,24 +38,7 @@ public class Restaurant implements IsetearRest{
         this.recaudacion += recaudacion;
     }
 
-    public void setearPlatos() {
-        Plato plato1 = new Plato(11, "Picada", "Entrada para tres personas.\nVariedad de quesos y salames, \nacompañado de rodajas de pan casero", 1500, TipoComida.ENTRADA);
-        menuDePlatos.put(plato1.getCodigo(), plato1);
-        Plato plato2 = new Plato(12, "Empanadas", "Surtido de empanadas de copetin. Variedad de carne, JyQ y pollo", 1150, TipoComida.ENTRADA);
-        menuDePlatos.put(plato2.getCodigo(), plato2);
-        Plato plato3 = new Plato(21, "Parrillada", "Parrillada para dos personas,incluye morcilla, chorizo, chinchulines,\nvacio,costillitas y ojo de bife.", 5000, TipoComida.PRINCIPAL);
-        menuDePlatos.put(plato3.getCodigo(), plato3);
-        Plato plato4 = new Plato(22, "Fideos con tuco", "Fideos cocidos al dente y servidos \ncon una salsa de tomate casera.", 2000, TipoComida.PRINCIPAL);
-        menuDePlatos.put(plato4.getCodigo(), plato4);
-        Plato plato5 = new Plato(31, "Flan casero", "Flan de la casa, con dulce de leche y/o crema", 1000, TipoComida.POSTRE);
-        menuDePlatos.put(plato5.getCodigo(), plato5);
-        Plato plato6 = new Plato(32, "Helado", "Tres bochas de helado a eleccion, preguntar disponibilidad de sabores", 1500, TipoComida.POSTRE);
-        menuDePlatos.put(plato6.getCodigo(), plato6);
-        Plato plato7 = new Plato(41, "Vino Malbec Estancia Mendoza", "Calido,suave y dulce. Con taninos que no son agresivos", 1500, TipoComida.BEBIDA);
-        menuDePlatos.put(plato7.getCodigo(), plato7);
-        Plato plato8 = new Plato(42, "Coca-Cola", "Bien fria", 750, TipoComida.BEBIDA);
-        menuDePlatos.put(plato8.getCodigo(), plato8);
-    }
+
 
     public static String stream(URL url) {
         try (InputStream input = url.openStream()) {

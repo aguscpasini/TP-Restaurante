@@ -9,5 +9,8 @@
         <module name="TP-Restaurant" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="TP-Restaurant" target="17" />
+    </bytecodeTargetLevel>
   </component>
 </project>
