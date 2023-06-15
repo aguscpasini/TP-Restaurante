@@ -31,14 +31,15 @@ public class PanelDeControl {
     }
 
     public PanelDeControl() {
-        mostrarMesasButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
+        Restaurant res = new Restaurant();
+        res.setearMozos();
+        HashMap<Integer,Plato> platos = res.setearPlatos();
+        ArrayList<Mesa> Mesas = res.setearMesas();
+    mostrarMesasButton.addActionListener(new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
 
-                Restaurant res = new Restaurant();
-                ArrayList<Mozo> Mozos = res.setearMozos();
-                res.setearPlatos();
-                ArrayList<Mesa> Mesas = res.setearMesas();
+
 
                 Mesas.forEach(i -> {
                     if (i.ocupada) {
@@ -70,8 +71,13 @@ public class PanelDeControl {
         });
 
 
-
-
-
+        mostrarPlatosButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                for (Plato p :platos.values()) {
+                    System.out.println(p.toString());
+                }
+            }
+        });
     }
 }

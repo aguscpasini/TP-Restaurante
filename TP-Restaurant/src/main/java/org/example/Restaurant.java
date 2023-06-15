@@ -15,12 +15,12 @@ import java.util.*;
 
 
 public class Restaurant implements IsetearRest{
-    private ArrayList<Mesa> listMesas;
+        private ArrayList<Mesa> listMesas;
     private List<Cliente> listClientes;
     private static Double recaudacion;
     private ArrayList<Mozo> listMozos;
 
-    private Map<Integer, Plato> menuDePlatos;
+    private HashMap<Integer,Plato> menuDePlatos;
 
     public Restaurant() {
         listClientes = new ArrayList<>();
@@ -68,6 +68,17 @@ public class Restaurant implements IsetearRest{
             }
             return json.toString();
         } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    public HashMap<Integer,Plato> setearPlatos()  {
+        try{
+            String jsonString = stream(new URL("https://aguscpasini.github.io/jsonapitprestaurante/platos.json"));
+            Gson gson = new Gson();
+            Type PlatosHashMapType = new TypeToken<Map<Integer,Plato>>(){}.getType();
+            menuDePlatos = gson.fromJson(jsonString, PlatosHashMapType);
+            return (HashMap<Integer, Plato>) menuDePlatos;
+        }catch (MalformedURLException e){
             throw new RuntimeException(e);
         }
     }
