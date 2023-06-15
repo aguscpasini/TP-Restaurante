@@ -7,6 +7,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.lang.reflect.Array;
 import java.lang.reflect.Type;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -14,17 +15,17 @@ import java.util.*;
 
 
 public class Restaurant implements IsetearRest{
-        private ArrayList<Mesa> listMesas;
+    private ArrayList<Mesa> listMesas;
     private List<Cliente> listClientes;
     private static Double recaudacion;
-    private List<Empleado> setEmpleados;
+    private ArrayList<Mozo> listMozos;
 
     private Map<Integer, Plato> menuDePlatos;
 
     public Restaurant() {
         listClientes = new ArrayList<>();
         listMesas = new ArrayList<>();
-        setEmpleados = new ArrayList<>();
+        listMozos = new ArrayList<>();
         menuDePlatos = new HashMap<>();
         recaudacion = 0.0;
     }
@@ -84,12 +85,20 @@ public class Restaurant implements IsetearRest{
         }
     }
 
-    public void setearMozos() {
-        setEmpleados.add(new Mozo("Agustin", "Correa"));
-        setEmpleados.add(new Mozo("Agustin", "Ledesma"));
-        setEmpleados.add(new Mozo("Pablo", "Perez"));
+    public ArrayList<Mozo> setearMozos() {
 
-    }
+        try {
+            String jsonString1 = stream(new URL("https://aguscpasini.github.io/jsonapitprestaurante/mozos.json"));
+            Gson gson1 = new Gson();
+            Type MozoListType = new TypeToken<ArrayList<Mozo>>(){}.getType();
+            listMozos = gson1.fromJson(jsonString1, MozoListType);
+
+            return listMozos;
+        } catch (MalformedURLException ex) {
+            throw new RuntimeException(ex);
+        }
+   }
+
 
     public void agregarMesa(Mesa mesa) {
         listMesas.add(mesa);
@@ -118,20 +127,20 @@ public class Restaurant implements IsetearRest{
         return null;
     }
 
-    public void agregarEmpleado(Empleado empleado) {
-        setEmpleados.add(empleado);
+    public void agregarMozo(Mozo mozo) {
+        listMozos.add(mozo);
     }
 
-    public void eliminarEmpleado(Empleado e) {
-        if (setEmpleados.contains(e)) {
-            setEmpleados.remove(e);
+    public void eliminarMozo(Mozo e) {
+        if (listMozos.contains(e)) {
+            listMozos.remove(e);
         } else {
-            System.out.println("El empleado no se encontro");
+            System.out.println("El mozo no se encontro");
         }
     }
 
-    public void mostrarEmpleados() {
-        for (Empleado e : setEmpleados) {
+    public void mostrarMozo() {
+        for (Mozo e : listMozos) {
             System.out.println(e.toString());
         }
     }

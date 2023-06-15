@@ -31,26 +31,47 @@ public class PanelDeControl {
     }
 
     public PanelDeControl() {
-    mostrarMesasButton.addActionListener(new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
+        mostrarMesasButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
 
-            Restaurant res = new Restaurant();
-            res.setearMozos();
-            res.setearPlatos();
-            ArrayList<Mesa> Mesas = res.setearMesas();
+                Restaurant res = new Restaurant();
+                ArrayList<Mozo> Mozos = res.setearMozos();
+                res.setearPlatos();
+                ArrayList<Mesa> Mesas = res.setearMesas();
 
-            Mesas.forEach(i -> {
-                if (i.ocupada) {
-                    System.out.printf("Mesa número: %d de %d personas, se encuentra OCUPADA. Su mozo se llama %s %s.\n Los platos que están comiendo son: \n", i.numMesa, i.getCapacidad(), i.mozo.getNombre(), i.mozo.getApellido());
-                    i.pedido.listPlatos.forEach(p -> {
-                        System.out.printf("- %s \n" , p.nombre );
-                    });
-                }else{
-                    System.out.printf("Mesa número: %d de %d personas, se encuentra DESOCUPADA. Su mozo se llama %s %s.\n", i.numMesa, i.getCapacidad(), i.mozo.getNombre(), i.mozo.getApellido());
-                }
-            });
-        }
-    });
-}
+                Mesas.forEach(i -> {
+                    if (i.ocupada) {
+                        System.out.printf("Mesa número: %d de %d personas, se encuentra OCUPADA. Su mozo se llama %s %s.\n Los platos que están comiendo son: \n", i.numMesa, i.getCapacidad(), i.mozo.getNombre(), i.mozo.getApellido());
+                        i.pedido.listPlatos.forEach(p -> {
+                            System.out.printf("- %s \n", p.nombre);
+                        });
+                    } else {
+                        System.out.printf("Mesa número: %d de %d personas, se encuentra DESOCUPADA. Su mozo se llama %s %s.\n", i.numMesa, i.getCapacidad(), i.mozo.getNombre(), i.mozo.getApellido());
+                    }
+                });
+            }
+        });
+
+
+        mostrarMozosButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e1) {
+
+                Restaurant res = new Restaurant();
+                ArrayList<Mozo> Mozos = res.setearMozos();
+                res.setearPlatos();
+                ArrayList<Mesa> Mesas = res.setearMesas();
+
+                Mozos.forEach(j -> {
+                    System.out.printf("Mozo numero: %d . Nombre: %s . Apellido: %s . Salario: %f .\n", j.getId(), j.getNombre(), j.getApellido(), j.salario);
+                });
+            }
+        });
+
+
+
+
+
+    }
 }

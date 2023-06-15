@@ -1,11 +1,16 @@
 package org.example;
 
 public class Mozo extends Empleado {
-    private Integer propina;
+    public Integer propina;
 
     public Mozo(String nombre, String apellido) {
         super(nombre, apellido);
         propina=0;
+    }
+
+    public Mozo(String nombre, String apellido, Integer propina) {
+        super(nombre, apellido);
+        this.propina = propina;
     }
 
     public Integer getPropina() {
