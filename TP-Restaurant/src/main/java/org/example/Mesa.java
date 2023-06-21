@@ -25,12 +25,12 @@ public class Mesa {
         this.capacidad = capacidad;
         this.ocupada = false;
         this.mozo = mozo;
-
+        this.recaudacionParcial = (double) 0;
+        this.recaudacionTotal = this.recaudacionTotal + recaudacionParcial;
         this.pedido=new Pedido();
 
 
     }
-
 
     public Pedido getPedido() {
 
@@ -81,4 +81,29 @@ public class Mesa {
     public void setPropina(Double propina) {
         this.propina = propina;
     }
+
+    public static int getNumMesa() {
+        return numMesa;
+    }
+
+    public static void setNumMesa(int numMesa) {
+        Mesa.numMesa = numMesa;
+    }
+
+    public Double getRecaudacionTotal() {
+        return recaudacionTotal;
+    }
+
+    public void setRecaudacionTotal(Double recaudacionTotal) {
+        this.recaudacionTotal = recaudacionTotal;
+    }
+
+    public Double getRecaudacionParcial() {
+        return recaudacionParcial;
+    }
+
+    public void setRecaudacionParcial(Double recaudacionParcial) {
+        this.recaudacionParcial = recaudacionParcial;
+    }
+
 }

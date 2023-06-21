@@ -15,11 +15,10 @@ import java.util.*;
 
 
 public class Restaurant implements IsetearRest{
-        private ArrayList<Mesa> listMesas;
+    private ArrayList<Mesa> listMesas;
     private List<Cliente> listClientes;
     private static Double recaudacion;
     private ArrayList<Mozo> listMozos;
-
     private HashMap<Integer,Plato> menuDePlatos;
 
     public Restaurant() {
@@ -276,6 +275,21 @@ public class Restaurant implements IsetearRest{
         }
     }
 
+    public Double sumarRecaudacion(){
 
+        try {
+
+        Double recaudacion = (double) 0;
+        for (Mesa p : listMesas){
+            recaudacion += p.getRecaudacionTotal();
+        }}catch (NullPointerException e){
+            e.getMessage();
+        }
+        return recaudacion;
+    }
+
+    public void mostrarRecaudacion (Double recaudacion){
+        System.out.println("La recaudacion total del Restaurante es de: " + recaudacion);
+    }
 
 }
