@@ -57,12 +57,10 @@ public class Plato {
 
     @Override
     public String toString() {
-        return "Plato{" +
-                "codigo=" + codigo +
-                ", nombre='" + nombre + '\'' +
-                ", descripcion='" + descripcion + '\'' +
-                ", precio=" + precio +
-                ", tipo=" + tipo +
-                '}';
+        return "Plato " + codigo +
+                " Nombre='" + nombre + '\'' +
+                "Descripcion='" + descripcion + '\'' +
+                ",Precio=" + precio +
+                ", Tipo=" + tipo;
     }
 }
