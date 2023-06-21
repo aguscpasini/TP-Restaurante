@@ -5,6 +5,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
+import org.example.Excepciones.MesaNoEncontrada;
 
 public class Main {
     public static void main(String[] args)  {
@@ -49,7 +50,7 @@ public class Main {
 
         try {
             aux = res.ingresarYBuscarMesa();
-        } catch (Restaurant.MesaNoEncontrada e) {
+        } catch (MesaNoEncontrada e) {
             System.out.println("Mesa no encontrada");
         }
 
