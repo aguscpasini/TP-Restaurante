@@ -1,5 +1,8 @@
 package org.example;
 
+import org.example.Excepciones.MesaNoEncontrada;
+import org.example.Excepciones.SinPlatos;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -14,7 +17,7 @@ public class PanelDeControl {
     private JButton mostrarPlatosButton;
     private JButton mostrarMozosButton;
     private JButton sentarGenteButton;
-    private JButton desocuparMesaButton;
+    private JButton pedirCuentaButton;
     private JButton cobrarMesaButton;
     private JButton verRecaudaciónButton;
     private JLabel clienteslabel;
@@ -38,6 +41,7 @@ public class PanelDeControl {
         ArrayList<Mozo> Mozos = res.setearMozos();
         HashMap<Integer,Plato> platos = res.setearPlatos();
         ArrayList<Mesa> Mesas = res.setearMesas();
+        Scanner sc = new Scanner(System.in);
 
 
           mostrarMesasButton.addActionListener(new ActionListener() {
@@ -46,12 +50,12 @@ public class PanelDeControl {
 
                 Mesas.forEach(i -> {
                     if (i.ocupada) {
-                        System.out.printf("Mesa número: %d de %d personas, se encuentra OCUPADA. Su mozo se llama %s %s.\n Los platos que están comiendo son: \n", i.numMesa, i.getCapacidad(), i.mozo.getNombre(), i.mozo.getApellido());
+                        System.out.printf("Mesa número: %d de %d personas, se encuentra OCUPADA. Su mozo se llama %s %s.\n Los platos que están comiendo son: \n", i.getNumMesa(), i.getCapacidad(), i.mozo.getNombre(), i.mozo.getApellido());
                         i.pedido.listPlatos.forEach(p -> {
                             System.out.printf("- %s \n", p.nombre);
                         });
                     } else {
-                        System.out.printf("Mesa número: %d de %d personas, se encuentra DESOCUPADA. Su mozo se llama %s %s.\n", i.numMesa, i.getCapacidad(), i.mozo.getNombre(), i.mozo.getApellido());
+                        System.out.printf("Mesa número: %d de %d personas, se encuentra DESOCUPADA. Su mozo se llama %s %s.\n", i.getNumMesa(), i.getCapacidad(), i.mozo.getNombre(), i.mozo.getApellido());
                     }
                 });
             }
@@ -84,6 +88,31 @@ public class PanelDeControl {
 
                 Double recaudacion = res.sumarRecaudacion();
                 res.mostrarRecaudacion(recaudacion);
+            }
+        });
+        pedirCuentaButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                boolean exc = false;
+                int numMesa;
+                do {
+                    exc=false;
+                    System.out.println("Ingrese el numero de mesa que desea cobrar...\n");
+                    numMesa=sc.nextInt();
+
+                    try{
+                        res.pedirCuenta(numMesa);
+                    }catch (SinPlatos ex)
+                    {
+                        System.out.println(ex.getMessage());
+                        exc = true;
+                    }catch (MesaNoEncontrada ex){
+                        System.out.println(ex.getMessage());
+                        exc = true;
+                    }
+                }while(exc);
+
+
             }
         });
 

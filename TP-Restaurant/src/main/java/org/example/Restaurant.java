@@ -1,7 +1,10 @@
 package org.example;
 
+
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import org.example.Excepciones.MesaNoEncontrada;
+import org.example.Excepciones.SinPlatos;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -101,7 +104,7 @@ public class Restaurant implements IsetearRest{
         int i = 0;
         boolean flag = false;
         while (i < listMesas.size() && flag != true) {
-            if (listMesas.get(i).getNumeroDeMesa() == numMesa) {
+            if (listMesas.get(i).getNumMesa() == numMesa) {
                 listMesas.remove(i);
                 flag = true;
             }
@@ -112,7 +115,7 @@ public class Restaurant implements IsetearRest{
         int i = 0;
         boolean flag = false;
         while (i < listMesas.size() && flag != true) {
-            if (listMesas.get(i).getNumeroDeMesa() == numMesa) {
+            if (listMesas.get(i).getNumMesa() == numMesa) {
                 return listMesas.get(i);
             }
             i++;
@@ -164,7 +167,7 @@ public class Restaurant implements IsetearRest{
         int i = 0;
         boolean flag = false;
         while (i < listMesas.size() && flag != true) {
-            if (listMesas.get(i).getNumeroDeMesa() == numMesa) {
+            if (listMesas.get(i).getNumMesa() == numMesa) {
                 listMesas.get(i).setOcupada(true);
                 flag = true;
             }
@@ -176,7 +179,7 @@ public class Restaurant implements IsetearRest{
         int i = 0;
         boolean flag = false;
         while (i < listMesas.size() && flag != true) {
-            if (listMesas.get(i).getNumeroDeMesa() == numMesa) {
+            if (listMesas.get(i).getNumMesa() == numMesa) {
                 listMesas.get(i).setOcupada(false);
                 flag = true;
             }
@@ -184,12 +187,23 @@ public class Restaurant implements IsetearRest{
         }
     }
 
-    public double pedirCuenta(int numMesa) {
+    public void pedirCuenta(int numMesa)throws SinPlatos,MesaNoEncontrada{
         Mesa mesa = buscarMesa(numMesa);
+        if(mesa == null){
+            throw new MesaNoEncontrada("Esta mesa no existe.");
+        }else if (!mesa.getOcupada()){
+            throw new SinPlatos("En esta mesa no hay platos cargados!");
+        }
         desocuparMesa(numMesa);
         double gastadoMesa = mesa.sumarGastadoMesa();
         setRecaudacion(gastadoMesa);
-        return gastadoMesa;
+        ArrayList<Plato>platosMesa= mesa.getPedido().getListPlatos();
+
+        for (Plato p:platosMesa) {
+            System.out.println(p.getNombre()+ " $"+p.getPrecio());
+        }
+        System.out.println("TOTAL: "+gastadoMesa);
+
     }
 
     public Plato buscarPlato(Integer codigo) {
@@ -255,7 +269,7 @@ public class Restaurant implements IsetearRest{
 
                 } while (mesaAux == null);
 
-                return mesaAux.getNumeroDeMesa();
+                return mesaAux.getNumMesa();
 
             } catch (InputMismatchException e1) {
                 System.out.println("Ingrese un caracter valido");
@@ -266,14 +280,7 @@ public class Restaurant implements IsetearRest{
     }
 
 
-    class MesaNoEncontrada extends Exception{
 
-        public MesaNoEncontrada(){};
-
-        public MesaNoEncontrada (String msj_error){
-            super (msj_error);
-        }
-    }
 
     public Double sumarRecaudacion(){
 
