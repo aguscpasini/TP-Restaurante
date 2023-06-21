@@ -36,7 +36,7 @@ public abstract class Persona {
     @Override
     public String toString() {
         return
-                "\nNombre:" + nombre +
-                "\nApellido:00" + apellido;
+                "\nNombre: " + nombre +
+                "\nApellido: " + apellido;
     }
 }

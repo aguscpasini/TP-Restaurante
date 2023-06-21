@@ -2,7 +2,7 @@ package org.example;
 
 public class Cliente extends Persona{
 
-    private Integer contadorDeVisitas;
+    public Integer contadorDeVisitas;
 
     public Cliente(String nombre, String apellido) {
         super(nombre, apellido);
@@ -21,7 +21,7 @@ public class Cliente extends Persona{
 
     @Override
     public String toString() {
-        return super.toString()+
+        return super.toString() +
                 "\nID:" + getId() +
                 "\nContador de visitas:" + contadorDeVisitas;
     }

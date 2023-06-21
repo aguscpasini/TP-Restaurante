@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Scanner;
 
 public class PanelDeControl {
     private JPanel rootPanel;
@@ -83,6 +84,37 @@ public class PanelDeControl {
 
                 Double recaudacion = res.sumarRecaudacion();
                 res.mostrarRecaudacion(recaudacion);
+            }
+        });
+
+        mostrarClienteButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                res.mostrarClientes();
+            }
+        });
+
+        sumarVisitaButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                System.out.println("Ingrese ID del cliente al que se le va a sumar la visita: ");
+                Scanner sc = new Scanner(System.in);
+                int id = sc.nextInt();
+                res.sumarVisita(id);
+            }
+        });
+
+        buscarClienteButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                System.out.println("Ingrese ID del cliente al que se va a buscar: ");
+                Scanner sc1 = new Scanner(System.in);
+                int idCliente = sc1.nextInt();
+                Cliente aux = res.buscarCliente(idCliente);
+                aux.toString();
+
             }
         });
     }

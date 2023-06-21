@@ -292,4 +292,25 @@ public class Restaurant implements IsetearRest{
         System.out.println("La recaudacion total del Restaurante es de: " + recaudacion);
     }
 
+    public void sumarVisita (int id){
+        for (Cliente p : listClientes){
+            if (p.getId() == id){
+                p.contadorDeVisitas++;
+                System.out.println("Las visitas del cliente son: " + p.getContadorDeVisitas());
+            }else {
+                System.out.println("El cliente no se encontro.");
+            }
+        }
+    }
+
+    public Cliente buscarCliente (int id){
+
+        for (Cliente p : listClientes){
+            if (id == p.getId()){
+                return p;
+            }
+        }return null;
+    }
+
+
 }
