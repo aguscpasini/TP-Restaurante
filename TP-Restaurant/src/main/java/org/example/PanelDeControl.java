@@ -32,15 +32,16 @@ public class PanelDeControl {
     }
 
     public PanelDeControl() {
+
         Restaurant res = new Restaurant();
-        res.setearMozos();
+        ArrayList<Mozo> Mozos = res.setearMozos();
         HashMap<Integer,Plato> platos = res.setearPlatos();
         ArrayList<Mesa> Mesas = res.setearMesas();
-    mostrarMesasButton.addActionListener(new ActionListener() {
+
+
+          mostrarMesasButton.addActionListener(new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-
-
 
                 Mesas.forEach(i -> {
                     if (i.ocupada) {
@@ -60,11 +61,6 @@ public class PanelDeControl {
             @Override
             public void actionPerformed(ActionEvent e1) {
 
-                Restaurant res = new Restaurant();
-                ArrayList<Mozo> Mozos = res.setearMozos();
-                res.setearPlatos();
-                ArrayList<Mesa> Mesas = res.setearMesas();
-
                 Mozos.forEach(j -> {
                     System.out.printf("Mozo numero: %d . Nombre: %s . Apellido: %s . Salario: %f .\n", j.getId(), j.getNombre(), j.getApellido(), j.salario);
                 });
@@ -78,6 +74,15 @@ public class PanelDeControl {
                 for (Plato p :platos.values()) {
                     System.out.println(p.toString());
                 }
+            }
+        });
+
+        verRecaudaciónButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                Double recaudacion = res.sumarRecaudacion();
+                res.mostrarRecaudacion(recaudacion);
             }
         });
     }
