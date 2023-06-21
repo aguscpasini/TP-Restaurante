@@ -5,33 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="081a99bb-7774-4d4b-b275-f09ddd8d38cc" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/TP-Restaurante.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_core_2_9_7.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_code_gson_gson_2_8_5.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_guava_guava_15_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__commons_io_commons_io_2_13_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__de_krsc_jsonpath_jsonpath_0_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_commons_commons_lang3_3_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_codehaus_jackson_jackson_core_asl_1_9_13.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_codehaus_jackson_jackson_mapper_asl_1_9_13.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_json_json_20230227.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__top_jfunc_json_Json_Gson_1_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Empleado.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Empleado.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/IsetearRest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/IsetearRest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Mozo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Mozo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/PanelDeControl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/PanelDeControl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Restaurant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Restaurant.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/intellij/uiDesigner/core/GridConstraints.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/intellij/uiDesigner/core/GridConstraints.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/example/IsetearRest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/example/IsetearRest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/example/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/example/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/example/PanelDeControl$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/example/PanelDeControl$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/example/PanelDeControl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/example/PanelDeControl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/example/Restaurant$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/example/Restaurant$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/example/Restaurant$MesaNoEncontrada.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/example/Restaurant$MesaNoEncontrada.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/example/Restaurant.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/example/Restaurant.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP-Restaurant.iml" beforeDir="false" afterPath="$PROJECT_DIR$/TP-Restaurant.iml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
