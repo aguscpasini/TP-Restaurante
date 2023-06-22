@@ -187,6 +187,7 @@ public class Restaurant implements IsetearRest{
 
         String nombre;
         String apellido;
+        Integer id;
 
         Scanner sc = new Scanner(System.in);
 
@@ -208,6 +209,7 @@ public class Restaurant implements IsetearRest{
             i++;
         }
         if(!existe) {
+            clienteAagregar.id = clienteArrayList.size()+1;
             clienteArrayList.add(clienteAagregar);
         }
 
