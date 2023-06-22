@@ -13,6 +13,10 @@ public abstract class Persona {
         this.apellido = apellido;
     }
 
+    public Persona() {
+
+    }
+
     public int getId() {
         return id;
     }

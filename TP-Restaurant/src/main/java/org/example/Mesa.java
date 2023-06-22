@@ -4,8 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Mesa {
-    public static int numMesa;
-    private int numeroDeMesa;
+    public  int numMesa;
     private int capacidad;
     public Boolean ocupada;
     public Mozo mozo;
@@ -20,8 +19,7 @@ public class Mesa {
     }
 
     public Mesa(int capacidad, Mozo mozo) {
-        numMesa++;
-        this.numeroDeMesa = numMesa;
+
         this.capacidad = capacidad;
         this.ocupada = false;
         this.mozo = mozo;
@@ -41,12 +39,13 @@ public class Mesa {
         this.pedido = pedido;
     }
 
-    public int getNumeroDeMesa() {
-        return numeroDeMesa;
+
+    public int getNumMesa() {
+        return numMesa;
     }
 
-    public void setNumeroDeMesa(int numeroDeMesa) {
-        this.numeroDeMesa = numeroDeMesa;
+    public void setNumMesa(int numMesa) {
+        this.numMesa = numMesa;
     }
 
     public int getCapacidad() {
@@ -82,13 +81,7 @@ public class Mesa {
         this.propina = propina;
     }
 
-    public static int getNumMesa() {
-        return numMesa;
-    }
 
-    public static void setNumMesa(int numMesa) {
-        Mesa.numMesa = numMesa;
-    }
 
     public Double getRecaudacionTotal() {
         return recaudacionTotal;

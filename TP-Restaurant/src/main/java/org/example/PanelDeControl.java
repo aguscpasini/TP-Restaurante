@@ -1,8 +1,12 @@
 package org.example;
 
+import org.example.Excepciones.MesaNoEncontrada;
+import org.example.Excepciones.SinPlatos;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
@@ -13,9 +17,8 @@ public class PanelDeControl {
     private JButton mostrarMesasButton;
     private JButton mostrarPlatosButton;
     private JButton mostrarMozosButton;
-    private JButton sentarGenteButton;
-    private JButton desocuparMesaButton;
-    private JButton cobrarMesaButton;
+    private JButton ocuparYCargarPlatosButton;
+    private JButton pedirCuentaButton;
     private JButton verRecaudaciónButton;
     private JLabel clienteslabel;
     private JLabel mesaslabel;
@@ -38,6 +41,8 @@ public class PanelDeControl {
         ArrayList<Mozo> Mozos = res.setearMozos();
         HashMap<Integer,Plato> platos = res.setearPlatos();
         ArrayList<Mesa> Mesas = res.setearMesas();
+        ArrayList<Cliente> Clientes = new ArrayList<Cliente>();
+        Scanner sc = new Scanner(System.in);
 
 
           mostrarMesasButton.addActionListener(new ActionListener() {
@@ -46,12 +51,12 @@ public class PanelDeControl {
 
                 Mesas.forEach(i -> {
                     if (i.ocupada) {
-                        System.out.printf("Mesa número: %d de %d personas, se encuentra OCUPADA. Su mozo se llama %s %s.\n Los platos que están comiendo son: \n", i.numMesa, i.getCapacidad(), i.mozo.getNombre(), i.mozo.getApellido());
+                        System.out.printf("Mesa número: %d de %d personas, se encuentra OCUPADA. Su mozo se llama %s %s.\n Los platos que están comiendo son: \n", i.getNumMesa(), i.getCapacidad(), i.mozo.getNombre(), i.mozo.getApellido());
                         i.pedido.listPlatos.forEach(p -> {
                             System.out.printf("- %s \n", p.nombre);
                         });
                     } else {
-                        System.out.printf("Mesa número: %d de %d personas, se encuentra DESOCUPADA. Su mozo se llama %s %s.\n", i.numMesa, i.getCapacidad(), i.mozo.getNombre(), i.mozo.getApellido());
+                        System.out.printf("Mesa número: %d de %d personas, se encuentra DESOCUPADA. Su mozo se llama %s %s.\n", i.getNumMesa(), i.getCapacidad(), i.mozo.getNombre(), i.mozo.getApellido());
                     }
                 });
             }
@@ -86,6 +91,40 @@ public class PanelDeControl {
                 res.mostrarRecaudacion(recaudacion);
             }
         });
+        pedirCuentaButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                int numMesa;
+
+                    System.out.println("Ingrese el numero de mesa que desea cobrar...\n");
+                    numMesa=sc.nextInt();
+
+                    try{
+                        res.pedirCuenta(numMesa);
+                    }catch (SinPlatos ex)
+                    {
+                        System.out.println(ex.getMessage());
+                    }catch (MesaNoEncontrada ex){
+                        System.out.println(ex.getMessage());
+                    }
+
+            }
+        });
+        ocuparYCargarPlatosButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("Ingrese numero de mesa a ocupar...");
+                int numMesa = sc.nextInt();
+                try{
+                    res.ocuparMesa(numMesa);
+                    res.agregarPlatoAMesa(numMesa);
+                }catch (MesaNoEncontrada ex) {
+                    System.out.println(ex.getMessage());
+                }
+
+            }
+        });
 
         mostrarClienteButton.addActionListener(new ActionListener() {
             @Override
@@ -117,5 +156,19 @@ public class PanelDeControl {
 
             }
         });
+        agregarClienteButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ArrayList<Cliente> clientes = new ArrayList<Cliente>();
+                try {
+                    clientes = res.escribirJsonCliente();
+                    res.mostrarClientesAgregados(clientes);
+
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
+            }
+        });
+
     }
 }

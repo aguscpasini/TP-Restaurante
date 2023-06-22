@@ -11,6 +11,10 @@ public class Pedido {
         this.listPlatos = new ArrayList<Plato>();
     }
 
+    public ArrayList<Plato> getListPlatos() {
+        return listPlatos;
+    }
+
     public double sumarGastado(){
         double gastado=0;
         for (Plato p:listPlatos) {
