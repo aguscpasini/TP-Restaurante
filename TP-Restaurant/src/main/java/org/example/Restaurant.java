@@ -158,8 +158,12 @@ public class Restaurant implements IsetearRest{
         }
     }
 
-    public void mostrarClientes() {
-        for (Cliente e : listClientes) {
+    public void mostrarClientes() throws IOException {
+        ObjectMapper mapper = new ObjectMapper();
+        ArrayList<Cliente> clienteArrayList = new ArrayList<>();
+        Cliente[] clientes = mapper.readValue(new File("src/main/resources/clientes.json"),  Cliente[].class);
+        clienteArrayList.addAll(Arrays.asList(clientes));
+        for (Cliente e : clienteArrayList) {
             System.out.println(e.toString());
         }
     }
