@@ -16,9 +16,8 @@ public class PanelDeControl {
     private JButton mostrarMesasButton;
     private JButton mostrarPlatosButton;
     private JButton mostrarMozosButton;
-    private JButton sentarGenteButton;
+    private JButton ocuparYCargarPlatosButton;
     private JButton pedirCuentaButton;
-    private JButton cobrarMesaButton;
     private JButton verRecaudaciónButton;
     private JLabel clienteslabel;
     private JLabel mesaslabel;
@@ -93,10 +92,9 @@ public class PanelDeControl {
         pedirCuentaButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                boolean exc = false;
+
                 int numMesa;
-                do {
-                    exc=false;
+
                     System.out.println("Ingrese el numero de mesa que desea cobrar...\n");
                     numMesa=sc.nextInt();
 
@@ -105,15 +103,25 @@ public class PanelDeControl {
                     }catch (SinPlatos ex)
                     {
                         System.out.println(ex.getMessage());
-                        exc = true;
                     }catch (MesaNoEncontrada ex){
                         System.out.println(ex.getMessage());
-                        exc = true;
                     }
-                }while(exc);
-
 
             }
         });
+        ocuparYCargarPlatosButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("Ingrese numero de mesa a ocupar...");
+                int numMesa = sc.nextInt();
+                try{
+                    res.ocuparMesa(numMesa);
+                    res.agregarPlatoAMesa(numMesa);
+                }catch (MesaNoEncontrada ex) {
+                    System.out.println(ex.getMessage());
+                }
+            }
+        });
+
     }
 }

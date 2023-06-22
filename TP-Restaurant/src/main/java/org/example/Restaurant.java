@@ -3,13 +3,12 @@ package org.example;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import org.codehaus.jackson.map.ObjectMapper;
 import org.example.Excepciones.MesaNoEncontrada;
+import org.example.Excepciones.PlatoInexistente;
 import org.example.Excepciones.SinPlatos;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.lang.reflect.Array;
 import java.lang.reflect.Type;
 import java.net.MalformedURLException;
@@ -141,9 +140,11 @@ public class Restaurant implements IsetearRest{
         }
     }
 
-    public void agregarCliente(Cliente cliente) {
+    public void agregarCliente(Cliente cliente)  {
         listClientes.add(cliente);
+
     }
+
 
     public void eliminarCliente(int id) {
         int i = 0;
@@ -163,15 +164,13 @@ public class Restaurant implements IsetearRest{
         }
     }
 
-    public void ocuparMesa(int numMesa) {
-        int i = 0;
-        boolean flag = false;
-        while (i < listMesas.size() && flag != true) {
-            if (listMesas.get(i).getNumMesa() == numMesa) {
-                listMesas.get(i).setOcupada(true);
-                flag = true;
-            }
-            i++;
+    public void ocuparMesa(int numMesa)throws MesaNoEncontrada {
+
+        Mesa mesa = buscarMesa(numMesa);
+        if(mesa == null){
+            throw  new MesaNoEncontrada("Esta mesa no existe.");
+        }else {
+            mesa.setOcupada(true);
         }
     }
 
@@ -228,10 +227,16 @@ public class Restaurant implements IsetearRest{
                 cod = sc.nextInt();
                 Plato plato = buscarPlato(cod);
 
+
                 try {
+                    if(plato == null) {
+                        throw new PlatoInexistente("El codigo del plato no existe");
+                    }
                     mesa.getPedido().agregarPlato(plato);
-                }catch (NullPointerException ex) {
+                } catch (NullPointerException ex) {
                     System.out.println("El numero de mesa al que se quiere agregar el plato no existe");
+                }catch (PlatoInexistente e){
+                    System.out.println(e.getMessage());
                 }
 
                 sc.nextLine();
