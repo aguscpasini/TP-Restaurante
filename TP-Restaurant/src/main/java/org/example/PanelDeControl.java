@@ -140,7 +140,11 @@ public class PanelDeControl {
         mostrarClienteButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                res.mostrarClientes();
+                try {
+                    res.mostrarClientes();
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
             }
         });
 
