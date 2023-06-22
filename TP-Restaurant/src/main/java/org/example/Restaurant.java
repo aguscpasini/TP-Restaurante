@@ -221,6 +221,24 @@ public class Restaurant implements IsetearRest{
         return clienteArrayList;
 
     }
+    public void escribirJsonRecaudacion() throws IOException {
+        ObjectMapper mapper = new ObjectMapper();
+
+        try {
+            String json= mapper.readValue(new File("src/main/resources/recaudacion.json"),String.class);
+            Double rec = Double.valueOf(json)+recaudacion;
+            String jsonActualizado = rec.toString();
+
+
+            FileWriter fileWriter = new FileWriter("src/main/resources/recaudacion.json");
+            fileWriter.write(jsonActualizado);
+            fileWriter.close();
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
 
 
@@ -236,7 +254,7 @@ public class Restaurant implements IsetearRest{
         }
     }
 
-    public void pedirCuenta(int numMesa)throws SinPlatos,MesaNoEncontrada{
+    public void pedirCuenta(int numMesa) throws SinPlatos, MesaNoEncontrada {
         Mesa mesa = buscarMesa(numMesa);
         if(mesa == null){
             throw new MesaNoEncontrada("Esta mesa no existe.");
@@ -246,6 +264,12 @@ public class Restaurant implements IsetearRest{
         desocuparMesa(numMesa);
         double gastadoMesa = mesa.sumarGastadoMesa();
         setRecaudacion(gastadoMesa);
+        try{
+            escribirJsonRecaudacion();
+        }catch (IOException e){
+            System.out.println(e.getMessage());
+        }
+
         ArrayList<Plato>platosMesa= mesa.getPedido().getListPlatos();
 
         for (Plato p:platosMesa) {
@@ -375,4 +399,13 @@ public class Restaurant implements IsetearRest{
     }
 
 
+    public void mostrarRecaudacionJson()  {
+        ObjectMapper mapper=new ObjectMapper();
+        try{
+            System.out.println("La recaudacion total es de: $"+mapper.readValue(new File("src/main/resources/recaudacion.json"),String.class));
+        }catch (IOException e){
+            System.out.println(e.getMessage());
+        }
+
+    }
 }
