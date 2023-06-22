@@ -9,6 +9,7 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class PanelDeControl {
@@ -43,6 +44,7 @@ public class PanelDeControl {
         ArrayList<Mesa> Mesas = res.setearMesas();
         ArrayList<Cliente> Clientes = new ArrayList<Cliente>();
         Scanner sc = new Scanner(System.in);
+        res.cargarListClientesJson();
 
 
           mostrarMesasButton.addActionListener(new ActionListener() {
@@ -115,13 +117,21 @@ public class PanelDeControl {
         ocuparYCargarPlatosButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+
+
+
                 System.out.println("Ingrese numero de mesa a ocupar...");
-                int numMesa = sc.nextInt();
+
                 try{
+
+                    int numMesa = sc.nextInt();
                     res.ocuparMesa(numMesa);
                     res.agregarPlatoAMesa(numMesa);
                 }catch (MesaNoEncontrada ex) {
                     System.out.println(ex.getMessage());
+                }catch (InputMismatchException ex){
+                    System.out.println("Ingrese numero!");
+                    sc.nextLine();
                 }
 
             }
@@ -152,8 +162,15 @@ public class PanelDeControl {
                 System.out.println("Ingrese ID del cliente al que se va a buscar: ");
                 Scanner sc1 = new Scanner(System.in);
                 int idCliente = sc1.nextInt();
-                Cliente aux = res.buscarCliente(idCliente);
-                aux.toString();
+                try{
+                    Cliente aux = res.buscarCliente(idCliente);
+                    System.out.println(aux.toString());
+
+                }catch (NullPointerException ex){
+                    System.out.println(ex.getMessage());
+                    System.out.println("El id no existe.");
+                }
+
 
             }
         });
