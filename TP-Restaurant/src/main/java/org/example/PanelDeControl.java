@@ -148,16 +148,7 @@ public class PanelDeControl {
             }
         });
 
-        sumarVisitaButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
 
-                System.out.println("Ingrese ID del cliente al que se le va a sumar la visita: ");
-                Scanner sc = new Scanner(System.in);
-                int id = sc.nextInt();
-                res.sumarVisita(id);
-            }
-        });
 
         buscarClienteButton.addActionListener(new ActionListener() {
             @Override
