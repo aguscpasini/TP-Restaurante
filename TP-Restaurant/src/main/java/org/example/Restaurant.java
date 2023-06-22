@@ -167,10 +167,12 @@ public class Restaurant implements IsetearRest{
     public void ocuparMesa(int numMesa)throws MesaNoEncontrada {
 
         Mesa mesa = buscarMesa(numMesa);
-        if(mesa == null){
-            throw  new MesaNoEncontrada("Esta mesa no existe.");
-        }else {
+        if (mesa == null) {
+            throw new MesaNoEncontrada("Esta mesa no existe.");
+        } else {
             mesa.setOcupada(true);
+        }
+    }
     public void mostrarClientesAgregados(ArrayList<Cliente> clientes) {
         for (Cliente e : clientes) {
             System.out.println(e.toString());
@@ -220,17 +222,7 @@ public class Restaurant implements IsetearRest{
 
     }
 
-    public void ocuparMesa(int numMesa) {
-        int i = 0;
-        boolean flag = false;
-        while (i < listMesas.size() && flag != true) {
-            if (listMesas.get(i).getNumMesa() == numMesa) {
-                listMesas.get(i).setOcupada(true);
-                flag = true;
-            }
-            i++;
-        }
-    }
+
 
     public void desocuparMesa(int numMesa) {
         int i = 0;
