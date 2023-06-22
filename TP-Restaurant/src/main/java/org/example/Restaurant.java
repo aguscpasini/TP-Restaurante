@@ -95,20 +95,9 @@ public class Restaurant implements IsetearRest{
    }
 
 
-    public void agregarMesa(Mesa mesa) {
-        listMesas.add(mesa);
-    }
 
-    public void eliminarMesa(int numMesa) {
-        int i = 0;
-        boolean flag = false;
-        while (i < listMesas.size() && flag != true) {
-            if (listMesas.get(i).getNumMesa() == numMesa) {
-                listMesas.remove(i);
-                flag = true;
-            }
-        }
-    }
+
+
 
     public Mesa buscarMesa(int numMesa) {
         int i = 0;
@@ -122,44 +111,21 @@ public class Restaurant implements IsetearRest{
         return null;
     }
 
-    public void agregarMozo(Mozo mozo) {
-        listMozos.add(mozo);
-    }
-
-    public void eliminarMozo(Mozo e) {
-        if (listMozos.contains(e)) {
-            listMozos.remove(e);
-        } else {
-            System.out.println("El mozo no se encontro");
-        }
-    }
-
-    public void mostrarMozo() {
-        for (Mozo e : listMozos) {
-            System.out.println(e.toString());
-        }
-    }
-
-    public void agregarCliente(Cliente cliente)  {
-        listClientes.add(cliente);
-
-    }
 
 
-    public void eliminarCliente(int id) {
-        int i = 0;
-        boolean flag = false;
-        while (i < listClientes.size() && flag != true) {
-            if (listClientes.get(i).getId() == id) {
-                listClientes.remove(i);
-                flag = true;
-            }
-            i++;
-        }
-    }
 
-    public void mostrarClientes() {
-        for (Cliente e : listClientes) {
+
+
+
+
+
+
+    public void mostrarClientes() throws IOException {
+        ObjectMapper mapper = new ObjectMapper();
+        ArrayList<Cliente> clienteArrayList = new ArrayList<>();
+        Cliente[] clientes = mapper.readValue(new File("src/main/resources/clientes.json"),  Cliente[].class);
+        clienteArrayList.addAll(Arrays.asList(clientes));
+        for (Cliente e : clienteArrayList) {
             System.out.println(e.toString());
         }
     }
@@ -179,6 +145,18 @@ public class Restaurant implements IsetearRest{
         }
     }
 
+    public void cargarListClientesJson(){
+        ObjectMapper mapper = new ObjectMapper();
+        ArrayList<Cliente> clienteArrayList = new ArrayList<>();
+        Cliente[] clientes = new Cliente[0];
+        try {
+            clientes = mapper.readValue(new File("src/main/resources/clientes.json"),  Cliente[].class);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        clienteArrayList.addAll(Arrays.asList(clientes));
+        listClientes=clienteArrayList;
+    }
     public ArrayList<Cliente> escribirJsonCliente() throws IOException {
         ObjectMapper mapper = new ObjectMapper();
         ArrayList<Cliente> clienteArrayList = new ArrayList<>();
@@ -187,6 +165,7 @@ public class Restaurant implements IsetearRest{
 
         String nombre;
         String apellido;
+        Integer id;
 
         Scanner sc = new Scanner(System.in);
 
@@ -208,6 +187,7 @@ public class Restaurant implements IsetearRest{
             i++;
         }
         if(!existe) {
+            clienteAagregar.id = clienteArrayList.size()+1;
             clienteArrayList.add(clienteAagregar);
         }
 
@@ -220,6 +200,24 @@ public class Restaurant implements IsetearRest{
 
         return clienteArrayList;
 
+    }
+    public void escribirJsonRecaudacion() throws IOException {
+        ObjectMapper mapper = new ObjectMapper();
+
+        try {
+            String json= mapper.readValue(new File("src/main/resources/recaudacion.json"),String.class);
+            Double rec = Double.valueOf(json)+recaudacion;
+            String jsonActualizado = rec.toString();
+
+
+            FileWriter fileWriter = new FileWriter("src/main/resources/recaudacion.json");
+            fileWriter.write(jsonActualizado);
+            fileWriter.close();
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 
@@ -236,7 +234,7 @@ public class Restaurant implements IsetearRest{
         }
     }
 
-    public void pedirCuenta(int numMesa)throws SinPlatos,MesaNoEncontrada{
+    public void pedirCuenta(int numMesa) throws SinPlatos, MesaNoEncontrada {
         Mesa mesa = buscarMesa(numMesa);
         if(mesa == null){
             throw new MesaNoEncontrada("Esta mesa no existe.");
@@ -246,6 +244,12 @@ public class Restaurant implements IsetearRest{
         desocuparMesa(numMesa);
         double gastadoMesa = mesa.sumarGastadoMesa();
         setRecaudacion(gastadoMesa);
+        try{
+            escribirJsonRecaudacion();
+        }catch (IOException e){
+            System.out.println(e.getMessage());
+        }
+
         ArrayList<Plato>platosMesa= mesa.getPedido().getListPlatos();
 
         for (Plato p:platosMesa) {
@@ -270,23 +274,30 @@ public class Restaurant implements IsetearRest{
             Mesa mesa = buscarMesa(numMesa);
             String continuar = "s";
             Integer cod = 0;
+            if(mesa.getPedido().listPlatos.get(0).getNombre() == null){
+                mesa.setPedido(new Pedido());
+            }
 
             while (continuar.equals("s") && mesa != null) {
 
-                System.out.println("Ingresa codigo de plato");
-                cod = sc.nextInt();
-                Plato plato = buscarPlato(cod);
-
 
                 try {
+                    System.out.println("Ingresa codigo de plato");
+                    cod = sc.nextInt();
+                    Plato plato = buscarPlato(cod);
                     if(plato == null) {
                         throw new PlatoInexistente("El codigo del plato no existe");
                     }
-                    mesa.pedido.agregarPlato(plato);
+
+                    mesa.getPedido().agregarPlato(plato);
+
                 } catch (NullPointerException ex) {
                     System.out.println("El numero de mesa al que se quiere agregar el plato no existe");
                 }catch (PlatoInexistente e){
                     System.out.println(e.getMessage());
+                }catch (InputMismatchException e){
+                    System.out.println(e.getMessage());
+                    System.out.println("Tenes que ingresar un codigo numerico.");
                 }
 
                 sc.nextLine();
@@ -337,22 +348,7 @@ public class Restaurant implements IsetearRest{
 
 
 
-    public Double sumarRecaudacion(){
 
-        try {
-
-        Double recaudacion = (double) 0;
-        for (Mesa p : listMesas){
-            recaudacion += p.getRecaudacionTotal();
-        }}catch (NullPointerException e){
-            e.getMessage();
-        }
-        return recaudacion;
-    }
-
-    public void mostrarRecaudacion (Double recaudacion){
-        System.out.println("La recaudacion total del Restaurante es de: " + recaudacion);
-    }
 
     public void sumarVisita (int id){
         for (Cliente p : listClientes){
@@ -375,4 +371,13 @@ public class Restaurant implements IsetearRest{
     }
 
 
+    public void mostrarRecaudacionJson()  {
+        ObjectMapper mapper=new ObjectMapper();
+        try{
+            System.out.println("La recaudacion total es de: $"+mapper.readValue(new File("src/main/resources/recaudacion.json"),String.class));
+        }catch (IOException e){
+            System.out.println(e.getMessage());
+        }
+
+    }
 }

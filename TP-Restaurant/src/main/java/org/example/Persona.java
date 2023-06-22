@@ -2,7 +2,7 @@ package org.example;
 
 public abstract class Persona {
     private static int idPersona;
-    private int id;
+    public int id;
     private String nombre;
     private String apellido;
 
