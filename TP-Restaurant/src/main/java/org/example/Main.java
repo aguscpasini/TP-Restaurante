@@ -11,11 +11,9 @@ public class Main {
     public static void main(String[] args)  {
 
        Restaurant res = new Restaurant();
-
        HashMap<Integer,Plato>menuPlatos=res.setearPlatos();
        ArrayList<Mesa> Mesas = res.setearMesas();
-        ArrayList<Mozo> Mozos = res.setearMozos();
-
+       ArrayList<Mozo> Mozos = res.setearMozos();
 
 
         for (Plato p :menuPlatos.values()) {

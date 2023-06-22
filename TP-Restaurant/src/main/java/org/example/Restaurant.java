@@ -282,7 +282,7 @@ public class Restaurant implements IsetearRest{
                     if(plato == null) {
                         throw new PlatoInexistente("El codigo del plato no existe");
                     }
-                    mesa.getPedido().agregarPlato(plato);
+                    mesa.pedido.agregarPlato(plato);
                 } catch (NullPointerException ex) {
                     System.out.println("El numero de mesa al que se quiere agregar el plato no existe");
                 }catch (PlatoInexistente e){
