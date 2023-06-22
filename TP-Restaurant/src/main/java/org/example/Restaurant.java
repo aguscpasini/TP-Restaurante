@@ -5,6 +5,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.example.Excepciones.MesaNoEncontrada;
+import org.example.Excepciones.PlatoInexistente;
 import org.example.Excepciones.SinPlatos;
 
 import java.io.*;
@@ -139,9 +140,11 @@ public class Restaurant implements IsetearRest{
         }
     }
 
-    public void agregarCliente(Cliente cliente) {
+    public void agregarCliente(Cliente cliente)  {
         listClientes.add(cliente);
+
     }
+
 
     public void eliminarCliente(int id) {
         int i = 0;
@@ -161,6 +164,13 @@ public class Restaurant implements IsetearRest{
         }
     }
 
+    public void ocuparMesa(int numMesa)throws MesaNoEncontrada {
+
+        Mesa mesa = buscarMesa(numMesa);
+        if(mesa == null){
+            throw  new MesaNoEncontrada("Esta mesa no existe.");
+        }else {
+            mesa.setOcupada(true);
     public void mostrarClientesAgregados(ArrayList<Cliente> clientes) {
         for (Cliente e : clientes) {
             System.out.println(e.toString());
@@ -275,10 +285,16 @@ public class Restaurant implements IsetearRest{
                 cod = sc.nextInt();
                 Plato plato = buscarPlato(cod);
 
+
                 try {
+                    if(plato == null) {
+                        throw new PlatoInexistente("El codigo del plato no existe");
+                    }
                     mesa.getPedido().agregarPlato(plato);
-                }catch (NullPointerException ex) {
+                } catch (NullPointerException ex) {
                     System.out.println("El numero de mesa al que se quiere agregar el plato no existe");
+                }catch (PlatoInexistente e){
+                    System.out.println(e.getMessage());
                 }
 
                 sc.nextLine();
