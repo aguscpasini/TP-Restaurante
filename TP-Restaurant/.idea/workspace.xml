@@ -5,19 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6654ba97-890b-4c9d-aac8-37e6be23c925" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_21_06_2023_20_09_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_21_06_2023_20_09__Changes_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Cliente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Cliente.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/PanelDeControl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/PanelDeControl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Persona.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Persona.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Restaurant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Restaurant.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/example/Cliente.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/example/Cliente.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/example/PanelDeControl$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/example/PanelDeControl$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/example/PanelDeControl$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/example/PanelDeControl$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/example/PanelDeControl$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/example/PanelDeControl$3.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/example/PanelDeControl$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/example/PanelDeControl$4.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/example/PanelDeControl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/example/PanelDeControl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/example/Persona.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/example/Persona.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/example/Plato.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/example/Plato.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/org/example/Restaurant.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/example/Restaurant.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,11 +36,6 @@
         <option name="useMavenConfig" value="true" />
       </MavenGeneralSettings>
     </option>
-    <option name="importingSettings">
-      <MavenImportingSettings>
-        <option name="workspaceImportEnabled" value="true" />
-      </MavenImportingSettings>
-    </option>
   </component>
   <component name="ProjectId" id="2RWy65yiHXUd9WQwHPsvRQdFlrs" />
   <component name="ProjectViewState">
@@ -50,9 +45,25 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true"
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0"
   }
 }]]></component>
+  <component name="RunManager">
+    <configuration default="true" type="JetRunConfigurationType">
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">

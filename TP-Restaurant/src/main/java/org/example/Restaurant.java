@@ -3,13 +3,11 @@ package org.example;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import org.codehaus.jackson.map.ObjectMapper;
 import org.example.Excepciones.MesaNoEncontrada;
 import org.example.Excepciones.SinPlatos;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.lang.reflect.Array;
 import java.lang.reflect.Type;
 import java.net.MalformedURLException;
@@ -161,6 +159,55 @@ public class Restaurant implements IsetearRest{
         for (Cliente e : listClientes) {
             System.out.println(e.toString());
         }
+    }
+
+    public void mostrarClientesAgregados(ArrayList<Cliente> clientes) {
+        for (Cliente e : clientes) {
+            System.out.println(e.toString());
+        }
+    }
+
+    public ArrayList<Cliente> escribirJsonCliente() throws IOException {
+        ObjectMapper mapper = new ObjectMapper();
+        ArrayList<Cliente> clienteArrayList = new ArrayList<>();
+        Cliente[] clientes = mapper.readValue(new File("src/main/resources/clientes.json"),  Cliente[].class);
+        clienteArrayList.addAll(Arrays.asList(clientes));
+
+        String nombre;
+        String apellido;
+
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("Ingrese el nombre del cliente...\n");
+        nombre=sc.nextLine();
+
+        System.out.println("Ingrese el apellido del cliente...\n");
+        apellido=sc.nextLine();
+        Boolean existe = false;
+        Cliente clienteAagregar = new Cliente(nombre, apellido);
+        int i = 0;
+        while(i < clienteArrayList.size() && existe == false){
+            if (clienteArrayList.get(i).getNombre().equals(clienteAagregar.getNombre()) && clienteArrayList.get(i).getApellido().equals(clienteAagregar.getApellido())) {
+                clienteArrayList.get(i).setContadorDeVisitas(clienteArrayList.get(i).getContadorDeVisitas() + 1);
+                existe = true;
+            }else{
+                existe = false;
+            }
+            i++;
+        }
+        if(!existe) {
+            clienteArrayList.add(clienteAagregar);
+        }
+
+        String jsonActualizado = mapper.writeValueAsString(clienteArrayList);
+
+        // Escribe el JSON resultante en el archivo para reemplazar su contenido existente
+        FileWriter fileWriter = new FileWriter("src/main/resources/clientes.json");
+        fileWriter.write(jsonActualizado);
+        fileWriter.close();
+
+        return clienteArrayList;
+
     }
 
     public void ocuparMesa(int numMesa) {

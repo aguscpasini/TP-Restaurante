@@ -6,6 +6,7 @@ import org.example.Excepciones.SinPlatos;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
@@ -41,6 +42,7 @@ public class PanelDeControl {
         ArrayList<Mozo> Mozos = res.setearMozos();
         HashMap<Integer,Plato> platos = res.setearPlatos();
         ArrayList<Mesa> Mesas = res.setearMesas();
+        ArrayList<Cliente> Clientes = new ArrayList<Cliente>();
         Scanner sc = new Scanner(System.in);
 
 
@@ -144,6 +146,19 @@ public class PanelDeControl {
                 Cliente aux = res.buscarCliente(idCliente);
                 aux.toString();
 
+            }
+        });
+        agregarClienteButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ArrayList<Cliente> clientes = new ArrayList<Cliente>();
+                try {
+                    clientes = res.escribirJsonCliente();
+                    res.mostrarClientesAgregados(clientes);
+
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
             }
         });
     }
