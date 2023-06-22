@@ -87,8 +87,9 @@ public class PanelDeControl {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                Double recaudacion = res.sumarRecaudacion();
-                res.mostrarRecaudacion(recaudacion);
+//                Double recaudacion = res.sumarRecaudacion();
+//                res.mostrarRecaudacion(recaudacion);
+                res.mostrarRecaudacionJson();
             }
         });
         pedirCuentaButton.addActionListener(new ActionListener() {
